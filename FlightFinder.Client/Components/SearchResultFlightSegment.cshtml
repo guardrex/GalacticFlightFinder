@@ -1,0 +1,31 @@
+﻿<div class="symbol">
+    @Symbol
+</div>
+
+<div class="spaceline">
+    @Flight.Spaceline
+    <small>@Flight.TicketClass.ToDisplayString()</small>
+</div>
+
+<div class="departure">
+    <h4>@Flight.DepartureTime.ToShortTimeString()</h4>
+    @Flight.DepartureTime.ToString("ddd MMM d") (@Flight.FromSpaceportCode)
+</div>
+
+<div class="arrow">➝</div>
+
+<div class="arrival">
+    <h4>@ArrivalTime.ToShortTimeString()</h4>
+    @ArrivalTime.ToString("ddd MMM d") (@Flight.ToSpaceportCode)
+</div>
+
+<div class="duration">
+    @Flight.DurationHours.ToString("F") hours
+</div>
+
+@functions
+{
+    public string Symbol { get; set; }
+    public FlightSegment Flight { get; set; }
+    public DateTime ArrivalTime { get; set; }
+}

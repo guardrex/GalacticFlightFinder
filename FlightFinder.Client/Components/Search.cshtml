@@ -1,0 +1,86 @@
+﻿@inject HttpClient Http
+
+<div class="col">
+    <!-- Spaceport selection -->
+    <div class="row py-1">
+        <!-- From spaceport -->
+        <div class="col pr-0">
+            <div class="form-control d-flex">
+                <div style="margin-right:15px">&#128640;&nbsp;&nbsp;From:</div>
+                <select class="form-control" list="spaceports" placeholder="..." bind="@criteria.FromSpaceportCode" size="6">
+                    @foreach (var spaceport in spaceports)
+                    {
+                        <option value="@spaceport.Code">@spaceport.DisplayName (@spaceport.Code)</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col px-2 py-1 align-self-end arrow">➝</div>
+
+        <!-- To spaceport -->
+        <div class="col pl-0">
+            <div class="form-control d-flex">
+                <div>&#128640;&nbsp;&nbsp;To:</div>
+                <select class="form-control" list="spaceports" placeholder="..." bind="@criteria.ToSpaceportCode" size="6">
+                    @foreach (var spaceport in spaceports)
+                    {
+                        <option value="@spaceport.Code">@spaceport.DisplayName (@spaceport.Code)</option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Departure / arrival dates -->
+    <div class="row py-1">
+        <!-- Depart date -->
+        <div class="col pr-0">
+            <div class="form-control d-flex">
+                <div><i>🗓</i>&nbsp;&nbsp;Depart:</div>
+                <input type="date" bind="@criteria.OutboundDate" format-value="yyyy-MM-dd" />
+            </div>
+        </div>
+        <div class="col px-2 py-1 align-self-end arrow">➝</div>
+
+        <!-- Return date -->
+        <div class="col pl-0">
+            <div class="form-control d-flex">
+                <div><i>🗓</i>&nbsp;&nbsp;Return:</div>
+                <input type="date" bind="@criteria.ReturnDate" format-value="yyyy-MM-dd" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Class / search -->
+    <div class="row py-1 d-flex px-3">
+        <div>
+            <select class="custom-select" bind="@criteria.TicketClass">
+                <option value=@TicketClass.Economy>Economy</option>
+                <option value=@TicketClass.PremiumEconomy>Premium Economy</option>
+                <option value=@TicketClass.Business>Business</option>
+                <option value=@TicketClass.First>First</option>
+            </select>
+        </div>
+        <div class="ml-auto">
+            <button onclick="@(() => OnSearch(criteria))" type="button" class="btn btn-danger px-5">
+                Search ➝
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+@functions
+{
+    public Func<SearchCriteria, Task> OnSearch { get; set; }
+
+    private SearchCriteria criteria = new SearchCriteria("LHR", "GAL");
+
+    private Spaceport[] spaceports = Array.Empty<Spaceport>();
+
+    protected override async Task OnInitAsync()
+    {
+        spaceports = await Http.GetJsonAsync<Spaceport[]>("/api/spaceports");
+    }
+}
