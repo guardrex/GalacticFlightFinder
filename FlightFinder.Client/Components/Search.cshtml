@@ -1,4 +1,5 @@
 ﻿@inject HttpClient Http
+@using System.Linq
 
 <div class="col">
     <!-- Spaceport selection -->
@@ -13,7 +14,7 @@
                         <option value="@spaceport.Code">@spaceport.DisplayName (@spaceport.Code)</option>
                     }
                 </select>
-                <img style="margin-left:10px" height="144" width="144" alt="@criteria.FromSpaceportCode" src="images/@(criteria.FromSpaceportCode).png">
+                <img style="margin-left:10px" height="144" width="144" alt="Spaceport planet" src="/@(GetPlanetCode(criteria.FromSpaceportCode)).png">
             </div>
         </div>
         <div class="col px-2 py-1 align-self-end arrow">➝</div>
@@ -28,7 +29,7 @@
                         <option value="@spaceport.Code">@spaceport.DisplayName (@spaceport.Code)</option>
                     }
                 </select>
-                <img style="margin-left:10px" height="144" width="144" alt="@criteria.ToSpaceportCode" src="images/@(criteria.ToSpaceportCode).png">
+                <img style="margin-left:10px" height="144" width="144" alt="Spaceport planet" src="/@(GetPlanetCode(criteria.ToSpaceportCode)).png">
             </div>
         </div>
     </div>
@@ -64,14 +65,17 @@
             </select>
         </div>
         <div class="ml-auto">
+            <button onclick="ChangeBackground()" type="button" class="btn btn-danger px-5">
+                Change Background
+            </button>
+        </div>
+        <div class="ml-auto">
             <button onclick="@(() => OnSearch(criteria))" type="button" class="btn btn-danger px-5">
                 Search ➝
             </button>
         </div>
     </div>
 </div>
-
-
 
 @functions
 {
@@ -80,6 +84,25 @@
     private SearchCriteria criteria = new SearchCriteria("LHR", "GAL");
 
     private Spaceport[] spaceports = Array.Empty<Spaceport>();
+
+    private string GetPlanetCode(string code)
+    {
+        if (spaceports.Count() > 0)
+        {
+            if (Array.Find(spaceports, s => s.Code == code).IsEarthSpaceport)
+            {
+                return "EARTH";
+            }
+            else
+            {
+                return code;
+            }
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }
 
     protected override async Task OnInitAsync()
     {

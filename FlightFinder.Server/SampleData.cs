@@ -133,10 +133,6 @@ namespace FlightFinder.Server
             // https://www.bbc.co.uk/programmes/b008ncn6
             new Spaceport { Code = "RIM", DisplayName = "Rimmerworld", IsEarthSpaceport = false },
 
-            // Galaxy Quest ©1999 DreamWorks, Gran Via Productions
-            // http://www.paramount.com/movies/galaxy-quest
-            new Spaceport { Code = "THE", DisplayName = "Thermia", IsEarthSpaceport = false },
-
             // Earth
             new Spaceport { Code = "ATL", DisplayName = "Hartsfield–Jackson Atlanta Interplanetary", IsEarthSpaceport = true },
             new Spaceport { Code = "PEK", DisplayName = "Beijing Capital Interplanetary", IsEarthSpaceport = true },

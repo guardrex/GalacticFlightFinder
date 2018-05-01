@@ -22,6 +22,14 @@ h1 {
     color: #f2ff82;
 }
 
+.bg {
+    background-image: url('/background/base1.jpg');
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #search-and-results-area {
     display: flex;
     flex: auto;
@@ -88,7 +96,7 @@ h1 {
 
 #search-area {
     flex: initial;
-    background: linear-gradient(135deg, #cb60b3 0%, #c146a1 30%, #a80077 85%, #db36a4 100%);
+    background: radial-gradient(circle, rgba(35,35,35,1) 0%, rgba(96,112,128,1) 50%, rgba(59,59,59,1) 100%);
 }
 
     #search-area select {
@@ -123,7 +131,7 @@ h1 {
 
 #results-area {
     flex: auto;
-    background-color: #f0f0f0;
+    /*background-color: #f0f0f0;*/
     overflow-y: scroll;
     position: relative;
     /* Workaround for "blazor-component" wrapper elements. These will be removed shortly. */
@@ -146,7 +154,8 @@ h1 {
             }
 
     #results-area h2 {
-        font-weight: 200;
+        /* changed font-weight: 200;*/
+        font-weight: bold;
     }
 
     #results-area ul {
@@ -213,15 +222,20 @@ h1 {
         flex: initial;
         width: 120px;
         text-align: center;
+
+        background-color: white;
+        padding: 10px;
+        border-radius: .25rem;
+
     }
 
     #results-area button {
-        background-color: #9d136d;
+        background-color: #657585;
         color: white;
     }
 
         #results-area button:hover, #results-area button:active {
-            background-color: #e558b4;
+            background-color: #556575;
         }
 
     #results-area li > blazor-component {
@@ -238,15 +252,16 @@ h1 {
     font-size: 0.9rem;
     flex: none;
     width: 350px;
-    background: #404040;
+    /* removed background: #404040;*/
     box-shadow: inset 20px 0 20px -20px rgba(0, 0, 0, 0.7);
     overflow-y: auto;
     /* Workaround for "blazor-component" wrapper elements. These will be removed shortly. */
 }
 
     #selections-area h2 {
-        color: #9d9c9c;
-        font-weight: 200;
+        /* changing this color: #9d9c9c;
+        font-weight: 200;*/
+        font-weight:bold
     }
 
     #selections-area h4 {
@@ -256,8 +271,8 @@ h1 {
     }
 
     #selections-area ul.mb-4 li:first-child {
-        background-color: #9d136d;
-        border-color: #9d136d;
+        background-color: #657585;
+        border-color: #657585;
         color: white;
         position: relative;
     }
@@ -290,7 +305,7 @@ h1 {
     }
 
     #selections-area button {
-        background-color: #9d136d;
+        background-color: #657585;
         color: white;
         margin-left: 12px;
     }

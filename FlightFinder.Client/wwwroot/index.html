@@ -1,15 +1,24 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Galactic Flight Finder</title>
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet"> 
     <link href="css/site.css" rel="stylesheet">
+    <script>
+        var i = 1;
+    
+        function ChangeBackground() {
+            i += 1;
+            if (i > 5) i = 1;
+            document.body.style.backgroundImage = "url('/background/base" + i + ".jpg')";
+        }
+    </script>
     <script type="blazor-boot"></script>
 </head>
-<body>
+<body class="bg">
     Loading...
 </body>
 </html>
