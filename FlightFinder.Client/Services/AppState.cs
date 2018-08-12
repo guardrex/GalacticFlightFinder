@@ -10,11 +10,11 @@ namespace FlightFinder.Client.Services
     public class AppState
     {
         // Actual state
-        public IReadOnlyList<Itinerary> SearchResults { get; private set; }
+        public ICollection<Itinerary> SearchResults { get; private set; }
         public bool SearchInProgress { get; private set; }
 
         private readonly List<Itinerary> shortlist = new List<Itinerary>();
-        public IReadOnlyList<Itinerary> Shortlist => shortlist;
+        public ICollection<Itinerary> Shortlist => shortlist;
 
         // Lets components receive change notifications
         // Could have whatever granularity you want (more events, hierarchy...)
@@ -32,7 +32,7 @@ namespace FlightFinder.Client.Services
             SearchInProgress = true;
             NotifyStateChanged();
 
-            SearchResults = await http.PostJsonAsync<Itinerary[]>("/api/flightsearch", criteria);
+            //SearchResults = await http.PostJsonAsync<Itinerary[]>("/api/flightsearch", criteria);
             SearchInProgress = false;
             NotifyStateChanged();
         }

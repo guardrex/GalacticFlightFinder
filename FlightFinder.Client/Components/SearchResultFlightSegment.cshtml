@@ -25,7 +25,12 @@
 
 @functions
 {
-    public string Symbol { get; set; }
-    public FlightSegment Flight { get; set; }
-    public DateTime ArrivalTime { get; set; }
+    [Parameter]
+    private string Symbol { get; set; }
+
+    [Parameter]
+    private FlightSegment Flight { get; set; }
+
+    [Parameter]
+    private DateTime ArrivalTime { get; set; }
 }
